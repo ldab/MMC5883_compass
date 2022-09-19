@@ -1,0 +1,30 @@
+https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5:-Library-specification
+
+#######################################
+# Syntax Coloring Map For ExampleLibrary
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+MMC5883	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+readRegister	KEYWORD2
+readRegisterInt16	KEYWORD2
+getAxisMag	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+MMC5883 KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
