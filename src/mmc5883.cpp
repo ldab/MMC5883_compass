@@ -217,8 +217,8 @@ float MMC5883::getTemp(void)
 
   readRegister(&outRAW, MMC5883_OUT_TEMP);
 
-  float temp = (float)outRAW;
-  map(temp, 0, 0xFF, -75, 125);
+  float temp = (outRAW - 75) * 0.7;
+
   _DEBBUG("T: %.01fdegC", temp);
 
   return temp;
