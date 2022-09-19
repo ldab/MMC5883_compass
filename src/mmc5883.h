@@ -135,7 +135,7 @@ class MMC5883
   // Calibrate
   mmc5883_status_t calibrate(float &head_offset);
 
-  // Calculate heading based on the axis magnetic field
+  // Calculate heading based on the axis magnetic field in radians
   float calcHeading(mmc5883_axis_t _axis, float h_offset = 0);
 
   // SW reset

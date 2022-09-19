@@ -174,6 +174,9 @@ mmc5883_status_t MMC5883::getAxisMag(mmc5883_axis_t &_axis)
   uint8_t buffer[6];
   uint8_t status;
 
+  // Trigger measurement
+  err = writeRegister(MMC5883_INTERNAL_CTRL0, 0b1);
+
   // wait for the measuement ready bit
   do {
     err = readRegister(&status, MMC5883_STATUS);
@@ -190,9 +193,9 @@ mmc5883_status_t MMC5883::getAxisMag(mmc5883_axis_t &_axis)
   uint16_t z = (uint16_t)buffer[4] | (uint16_t)buffer[5] << 8;
 
   // 0.25mG per LSB -> 1G = 100uT
-  _axis.x    = x - 32768 * 0.25 / 100.0F;
-  _axis.y    = y - 32768 * 0.25 / 100.0F;
-  _axis.z    = z - 32768 * 0.25 / 100.0F;
+  _axis.x    = (x - 32768) * 0.25 / 100.0F;
+  _axis.y    = (y - 32768) * 0.25 / 100.0F;
+  _axis.z    = (z - 32768) * 0.25 / 100.0F;
 
   return err;
 }
@@ -228,7 +231,7 @@ mmc5883_status_t MMC5883::calibrate(float &head_offset)
 {
   mmc5883_status_t returnError;
   mmc5883_axis_t axis = {0};
-  returnError = reset();
+  returnError         = reset();
 
   delay(5);
 
@@ -256,10 +259,14 @@ mmc5883_status_t MMC5883::calibrate(float &head_offset)
 
 float MMC5883::calcHeading(mmc5883_axis_t _axis, float h_offset)
 {
-  float x = _axis.x + h_offset;
-  float y = _axis.y + h_offset;
+  float x       = _axis.x + h_offset;
+  float y       = _axis.y + h_offset;
+  float heading = atan2(y, x);
 
-  return atan2(y, x);
+  if (heading < 0)
+    heading += 2 * PI;
+
+  return heading;
 }
 
 mmc5883_status_t MMC5883::reset(void)
