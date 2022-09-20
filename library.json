@@ -1,0 +1,26 @@
+{
+    "name": "MMC5883_compass",
+    "description": "±8Gauss, High Performance, Low Cost 3-axis Magnetic Sensor",
+    "keywords": "sensors, magnetometer, motion detection, iot, gsm, gprs, gps, gnss",
+    "authors":
+    {
+      "name":  "Leonardo Bispo",
+      "url":   "https://github.com/ldab",
+      "maintainer": true
+    },
+    "repository":
+    {
+      "type": "git",
+      "url": "https://github.com/ldab/MMC5883_compass.git"
+    },
+    "homepage": "https://github.com/ldab/MMC5883_compass",
+    "export": {
+      "exclude": [
+        "linux",
+        "extras"
+      ]
+    },
+    "frameworks": "arduino",
+    "platforms": "*",
+    "examples": "examples/*/*.ino"
+  }
