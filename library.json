@@ -2,6 +2,7 @@
     "name": "MMC5883_compass",
     "description": "±8Gauss, High Performance, Low Cost 3-axis Magnetic Sensor",
     "keywords": "sensors, magnetometer, motion detection, iot, gsm, gprs, gps, gnss",
+    "version": "0.0.1b",
     "authors":
     {
       "name":  "Leonardo Bispo",
